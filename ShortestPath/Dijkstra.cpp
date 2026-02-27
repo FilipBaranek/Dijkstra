@@ -10,23 +10,37 @@ void Dijkstra::reinitVerticesMarks(ForwardStar& vertices)
 
 PathResult Dijkstra::findShortestPath(unsigned int from, unsigned int to, ForwardStar& vertices)
 {
+	{
+		auto itFrom = vertices.find(from);
+		auto itTo = vertices.find(to);
+		
+		if (itFrom == vertices.end() || itTo == vertices.end())
+		{
+			throw std::runtime_error("Wrong input");
+		}
+	}
+
+	int exploredVertices{};
+
 	Vertex* currentVertex = vertices[from].get();
 	currentVertex->mark() = 0;
 
-	while (currentVertex->id() != to)
+	while (currentVertex->id() != to && exploredVertices < vertices.size())
 	{
 		double totalLength{};
-		
-		if (currentVertex->previousVertexID() != -1)
-		{
-			Vertex* previousVertex = vertices[currentVertex->previousVertexID()].get();
-			totalLength += previousVertex->mark();
-		}
+
+		currentVertex->explored() = true; //questionable
+
+		//if (currentVertex->previousVertexID() != -1)
+		//{
+		//	Vertex* previousVertex = vertices[currentVertex->previousVertexID()].get();
+		//	totalLength += previousVertex->mark();
+		//}
 
 		for (auto& edge : currentVertex->edges())
 		{
 			Vertex* nextVertex = vertices[edge->endVertexId()].get();
-			double currLength = totalLength + edge->length();
+			double currLength = currentVertex->mark() + edge->length();
 
 			if (currLength < nextVertex->mark())
 			{
@@ -34,9 +48,13 @@ PathResult Dijkstra::findShortestPath(unsigned int from, unsigned int to, Forwar
 				nextVertex->previousVertexID() = currentVertex->id();
 			}
 
-			s_unexplored.push(nextVertex);
+			if (!nextVertex->explored())
+			{
+				s_unexplored.push(nextVertex);
+			}
 		}
 
+		++exploredVertices;
 		currentVertex = s_unexplored.top();
 		s_unexplored.pop();
 	}

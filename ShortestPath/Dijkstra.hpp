@@ -3,6 +3,7 @@
 #include <map>
 #include <utility>
 #include <string>
+#include <stdexcept>
 #include "Vertex.hpp"
 
 using PathResult = std::pair<double, std::string>;

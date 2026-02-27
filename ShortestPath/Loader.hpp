@@ -4,7 +4,7 @@
 #include <memory>
 #include <string>
 #include <sstream>
-#include <exception>
+#include <stdexcept>
 #include "Vertex.hpp"
 
 class Loader

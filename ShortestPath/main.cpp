@@ -33,7 +33,7 @@ int main()
 		}*/
 
 
-		auto shortestPath = Dijkstra::findShortestPath(288, 289, vertices);
+		auto shortestPath = Dijkstra::findShortestPath(925, 964, vertices);
 
 		std::cout << shortestPath.first << "\n";
 	}
