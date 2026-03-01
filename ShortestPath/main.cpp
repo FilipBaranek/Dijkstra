@@ -20,22 +20,10 @@ int main()
 		auto vertices = Loader::loadVertices(verticesPath);
 		Loader::loadEdges(vertices, incidentalVerticesPath, edgesPath);
 
-		/*for (auto& [id, vertex] : vertices)
-		{
-			std::cout << "ID: " << id << " Name: " << vertex->name() << " Edges: \n";
-			
-			for (auto& edge : vertex->edges())
-			{
-				std::cout << "ID: " << edge->id() << " Length: " << edge->length() << " End vertex: " << edge->endVertexId() << "\n";
-			}
+		auto shortestPath = Dijkstra::findShortestPath(320, 1178, vertices);
 
-			std::cout << "\n\n";
-		}*/
-
-
-		auto shortestPath = Dijkstra::findShortestPath(925, 964, vertices);
-
-		std::cout << shortestPath.first << "\n";
+		std::cout << "Route length: " << shortestPath.first << "\n";
+		std::cout << "Route:\n" << shortestPath.second << "\n";
 	}
 
 	return 0;

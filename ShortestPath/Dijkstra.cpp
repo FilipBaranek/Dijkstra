@@ -29,13 +29,7 @@ PathResult Dijkstra::findShortestPath(unsigned int from, unsigned int to, Forwar
 	{
 		double totalLength{};
 
-		currentVertex->explored() = true; //questionable
-
-		//if (currentVertex->previousVertexID() != -1)
-		//{
-		//	Vertex* previousVertex = vertices[currentVertex->previousVertexID()].get();
-		//	totalLength += previousVertex->mark();
-		//}
+		currentVertex->explored() = true;
 
 		for (auto& edge : currentVertex->edges())
 		{
@@ -59,5 +53,29 @@ PathResult Dijkstra::findShortestPath(unsigned int from, unsigned int to, Forwar
 		s_unexplored.pop();
 	}
 
-	return PathResult{ currentVertex->mark(), "" };
+	std::vector<Vertex*> verticesInFoundPath;
+	while (true)
+	{
+		verticesInFoundPath.push_back(currentVertex);
+
+		if (currentVertex->previousVertexID() == -1)
+		{
+			break;
+		}
+
+		currentVertex = vertices[currentVertex->previousVertexID()].get();
+	}
+
+	std::ostringstream oss;
+	for (int i = verticesInFoundPath.size() - 1; i >= 0; --i)
+	{
+		oss << verticesInFoundPath.at(i)->id();
+
+		if (verticesInFoundPath.at(i) != verticesInFoundPath.front())
+		{
+			oss << "->";
+		}
+	}
+
+	return PathResult{ verticesInFoundPath.front()->mark(), oss.str()};
 }

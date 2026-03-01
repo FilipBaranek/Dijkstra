@@ -3,9 +3,15 @@
 #include <map>
 #include <utility>
 #include <string>
+#include <sstream>
 #include <stdexcept>
 #include "Vertex.hpp"
 
+/// <summary>
+/// @brief - Found shortest path
+/// double - Path length
+/// std::string - Vertices in the path
+/// </summary>
 using PathResult = std::pair<double, std::string>;
 
 struct PriorityComparator
