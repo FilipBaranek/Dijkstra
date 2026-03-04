@@ -3,7 +3,7 @@
 #include <crtdbg.h>
 #include <iostream>
 #include "Loader.hpp"
-#include "Dijkstra.hpp"
+#include "ShortestPath.hpp"
 
 namespace
 {
@@ -20,9 +20,10 @@ int main()
 		auto vertices = Loader::loadVertices(verticesPath);
 		Loader::loadEdges(vertices, incidentalVerticesPath, edgesPath);
 
-		auto shortestPath = Dijkstra::findShortestPath(320, 1178, vertices);
+		auto shortestPath = ShortestPath::dijkstraShortestPath(825, 833, vertices);
 
-		std::cout << "Route length: " << shortestPath.first << "\n";
+		std::cout << "Dijkstra algorithm demonstration:\n";
+		std::cout << "Route length: " << shortestPath.first << "\n\n";
 		std::cout << "Route:\n" << shortestPath.second << "\n";
 	}
 

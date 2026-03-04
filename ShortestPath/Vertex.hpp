@@ -2,7 +2,9 @@
 #include <string>
 #include <numeric>
 #include <vector>
+#include <map>
 #include <memory>
+#include <cmath>
 #include "Edge.hpp"
 
 class Vertex;
@@ -14,13 +16,20 @@ class Vertex
 public:
 	Vertex(unsigned int id, std::string name)
 		: m_id{ id }, m_name{ name }, m_previousVertexID {-1},
-		  m_explored{}, m_mark { std::numeric_limits<double>::max() } {};
+		m_explored{}, m_xPos{}, m_yPos{},
+		m_mark { std::numeric_limits<double>::max() } {}
 
 	~Vertex() = default;
+
+	double heuristic(Vertex* vertexTo) const;
 
 	inline unsigned int id() const { return m_id; }
 
 	inline double& mark() { return m_mark; }
+
+	inline int& xPos() { return m_xPos; }	//reference might not be needed
+
+	inline int& yPos() { return m_yPos; }	//reference might not be needed
 
 	inline int& previousVertexID() { return m_previousVertexID; }
 
@@ -32,6 +41,8 @@ public:
 
 private:
 	unsigned int m_id;
+	int m_xPos;
+	int m_yPos;
 	int m_previousVertexID;
 	double m_mark;
 	bool m_explored;

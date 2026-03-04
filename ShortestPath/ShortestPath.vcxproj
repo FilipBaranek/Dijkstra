@@ -127,12 +127,14 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Dijkstra.cpp" />
+    <ClCompile Include="ShortestPath.cpp" />
     <ClCompile Include="Loader.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Vertex.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Dijkstra.hpp" />
+    <ClInclude Include="AStar.hpp" />
+    <ClInclude Include="ShortestPath.hpp" />
     <ClInclude Include="Edge.hpp" />
     <ClInclude Include="Loader.hpp" />
     <ClInclude Include="Vertex.hpp" />

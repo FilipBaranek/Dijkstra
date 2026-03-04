@@ -28,6 +28,9 @@
     <Filter Include="Source Files\Algorithms">
       <UniqueIdentifier>{53a01122-bdde-4297-a3a6-d0f29bcc6f32}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Model">
+      <UniqueIdentifier>{e40ba2de-76dd-4533-83fc-509e345dde77}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -36,8 +39,11 @@
     <ClCompile Include="Loader.cpp">
       <Filter>Source Files\Services</Filter>
     </ClCompile>
-    <ClCompile Include="Dijkstra.cpp">
+    <ClCompile Include="ShortestPath.cpp">
       <Filter>Source Files\Algorithms</Filter>
+    </ClCompile>
+    <ClCompile Include="Vertex.cpp">
+      <Filter>Source Files\Model</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -50,8 +56,11 @@
     <ClInclude Include="Loader.hpp">
       <Filter>Header Files\Services</Filter>
     </ClInclude>
-    <ClInclude Include="Dijkstra.hpp">
+    <ClInclude Include="ShortestPath.hpp">
       <Filter>Header Files\Algorithms</Filter>
+    </ClInclude>
+    <ClInclude Include="AStar.hpp">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
